@@ -1,7 +1,13 @@
 .title,
 body,
 p {
-    color: rgb(0, 0, 0)
+    color:white
+}
+hr{
+     background: linear-gradient( 
+        45deg
+         , #1f32bbd6, #0fe456f2);
+        };
 }
 
 [data-animate] {
@@ -71,11 +77,7 @@ nav.navbar a.nav-link {
     font-size: 2.5rem
 }
 
-.bg-gradient {
-    background: -webkit-gradient(linear, left top, left bottom, from(#2c2534), to(#0f0a3c))!important;
-    background: linear-gradient(to bottom, #731698, #d50f91)!important;
-    color: #fff
-}
+
 
 .bg-post {
     background: -webkit-gradient(linear, left top, left bottom, from(#2c2534), to(#0f0a3c))!important;
@@ -101,7 +103,10 @@ nav.navbar a.nav-link {
     opacity: .4;
     z-index: -1
 }
+.bg-gradient-intro{
+background:none;
 
+}
 .parallax {
     background-size: cover!important;
     -webkit-transition: all .1s!important;
@@ -111,7 +116,12 @@ nav.navbar a.nav-link {
 nav.navbar {
     padding-top: 0;
     padding-bottom: 0;
-    background: #121417;
+    background: linear-gradient(
+45deg
+, #21d1c1f0, transparent);
+    color: white;
+
+   
 }
 
 nav.navbar .navbar-brand {
@@ -125,7 +135,7 @@ nav.navbar .navbar-brand {
     text-shadow: 0 0 11px rgba(0, 0, 0, 0.438);
 }
 nav.navbar a.nav-link {
-    color: #90aff3;
+    color: white;
     border-top: 0 solid transparent;
     -webkit-transition: all .3s;
     transition: all .3s;
@@ -286,7 +296,9 @@ footer.main-footer p {
 .btn-link,
 .reference h3,
 body {
-    font-weight: 400
+    font-weight: 400;
+    background: linear-gradient( 45deg, #1f32bbd6, #0fe456f2);
+
 }
 
 #filter {
@@ -1954,7 +1966,7 @@ code {
     font-weight: 600;
   }
     .card-title a{
-    color: #000000;
+    color: yellow;
   }    
   hr{
     background-color: rgba(0, 0, 0, 0.25);
@@ -1965,7 +1977,7 @@ code {
   }  
   .card-text {
     text-decoration: none;
-    color:black;
+    color:red;
   }    
     @media only screen and (max-width: 767px) {
     .card {
@@ -2020,4 +2032,14 @@ code {
   .post-title a{
     color: #000000;
   }
+  .card-img-top{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 122px;
+    margin-left: 4rem;
+}
+.delbtn{
+    color: white;
+    background-color: red;
+}
   
