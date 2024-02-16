@@ -268,7 +268,7 @@
     <!-- Footer-->
 <footer class="main-footer">
     <div class="text-center">
-        <p><b>© </b>2023 Sayyed Nawab Abdul Ali </p>
+        <p><b>© </b><p id="year"> <p></p> Sayyed Nawab Abdul Ali </p>
          
     </div>
 </footer>
@@ -302,6 +302,16 @@
 
         });
     </script>
+<script>
+  // Get the current year
+  const currentYear = new Date().getFullYear();
+
+  // Find the <p> element with id="year"
+  const yearElement = document.getElementById("year");
+
+  // Update the content of the <p> tag with the current year
+  yearElement.textContent = `Year: ${currentYear}`;
+</script>
 
 
     <!-- JavaScript files-->
