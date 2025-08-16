@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sayyed Nawab Abdul Ali — Liquid Glass Portfolio</title>
+  <meta name="description" content="Portfolio of Sayyed Nawab Abdul Ali — Python, Full‑Stack & Android development. Liquid glass (glassmorphism) single‑page website." />
+  <meta name="theme-color" content="#0ea5ea" />
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-1: #0b1220;
+      --bg-2: #0b1530;
+      --glass: rgba(255,255,255,.08);
+      --glass-strong: rgba(255,255,255,.12);
+      --glass-border: rgba(255,255,255,.25);
+      --text: #eaf6ff;
+      --muted: #b8c7d9;
+      --accent: #00d4ff;
+      --accent-2: #2a80ee;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #fb7185;
+      --radius-xl: 22px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+      --shadow-2: 0 20px 60px rgba(0,0,0,.45);
+      --blur: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 10% -10%, #103a5c66, transparent 60%),
+                  radial-gradient(800px 600px at 110% 10%, #2a80ee33, transparent 60%),
+                  linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      overflow-x: hidden;
+    }
+
+    /* Decorative blurred blobs */
+    .blob {
+      position: fixed; inset: auto; z-index: -2; filter: blur(60px); opacity:.5; pointer-events:none;
+      transform: translateZ(0);
+    }
+    .blob.b1 { width: 420px; height: 420px; left:-120px; top:-80px; background: radial-gradient(circle, #00d4ff55, #2a80ee11); }
+    .blob.b2 { width: 520px; height: 520px; right:-140px; top:80px; background: radial-gradient(circle, #7c3aed44, #0ea5ea11); }
+    .blob.b3 { width: 520px; height: 520px; left:50%; bottom:-200px; transform:translateX(-50%); background: radial-gradient(circle, #22d3ee33, #22c55e11); }
+
+    /* Glass Utilities */
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-1), inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+    .glass-strong { background: var(--glass-strong); }
+
+    /* Container */
+    .container { width: min(1120px, 92%); margin-inline: auto; }
+
+    /* Navbar */
+    .nav {
+      position: sticky; top: 0; z-index: 50; margin-top: 12px; border-radius: var(--radius-xl);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; gap: 10px;
+    }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.4px; }
+    .brand .dot { width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--accent),#7dd3fc); box-shadow:0 0 16px #00d4ff; }
+    .nav a { color: var(--text); text-decoration: none; font-weight: 500; opacity:.9; }
+    .links { display: flex
+;
+    align-items: center;
+    gap: 14px;
+    border-radius: 16px; }
+    .links a { padding: 10px 14px; border-radius: 999px; position: relative; }
+    .links a:hover { background: rgba(255,255,255,.06); }
+
+    /* Mobile nav */
+    .nav-toggle { display:none; }
+    @media (max-width: 860px) {
+      .links { display:none; position:absolute; top:62px; left:0; right:0; padding:10px; }
+      .links.open { display:flex; flex-direction:column; gap:8px; }
+      .nav-toggle { display:inline-flex; width:42px; height:42px; align-items:center; justify-content:center; border-radius:12px; border:1px solid var(--glass-border); background:transparent; color:var(--text); }
+    }
+
+    /* Hero */
+    .hero { padding: 110px 0 80px; display:grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items:center; }
+    .hero h1 { font-size: clamp(2.1rem, 3vw, 3rem); line-height:1.15; margin: 0 0 14px; }
+    .hero p.lead { color: var(--muted); margin: 0 0 28px; font-size: clamp(1rem,1.3vw,1.1rem); }
+    .badgebar { display:flex; flex-wrap:wrap; gap:10px; margin: 18px 0 26px; }
+    .badge { padding: 8px 14px; border-radius: 999px; border:1px solid var(--glass-border); background: rgba(255,255,255,.05); font-size:.9rem; }
+    .cta { display:flex; gap:12px; flex-wrap:wrap; }
+
+    .hero-card { border-radius: var(--radius-xl); padding: 18px; align-self: stretch; display:grid; gap:14px; }
+    .avatar {
+      width: 140px; aspect-ratio:1; border-radius: 30px; overflow:hidden; display:grid; place-items:center; margin: 8px auto 2px; border:1px solid var(--glass-border);
+      box-shadow: var(--shadow-1), inset 0 0 40px rgba(255,255,255,.06);
+      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+    }
+    .avatar img { width:100%; height:100%; object-fit:cover; filter:saturate(1.1) contrast(1.05); }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    .section-title { font-size: clamp(1.6rem, 2.4vw, 2.1rem); margin: 0 0 22px; letter-spacing:.3px; }
+    .section-sub { color: var(--muted); margin-top: -6px; }
+
+    /* Cards Grid */
+    .grid { display:grid; gap: 18px; grid-template-columns: repeat(12, 1fr); }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+    @media (max-width: 990px) { .col-md-6 { grid-column: span 6; } .hero { grid-template-columns:1fr; } }
+    @media (max-width: 680px) { .col-sm-12 { grid-column: span 12; } }
+
+    .card { border-radius: var(--radius-lg); padding: 18px; position: relative; overflow: hidden; }
+    .card .title { font-weight:600; margin: 4px 0 6px; }
+    .card p { color: var(--muted); margin: 0; }
+
+    /* Icon circle */
+    .ic { width:46px; height:46px; display:grid; place-items:center; border-radius:14px; border:1px solid var(--glass-border); background: rgba(255,255,255,.06); box-shadow: inset 0 0 30px rgba(255,255,255,.05); }
+
+    /* Project image */
+    .project-img { border-radius: 14px; overflow: hidden; height: 170px; }
+    .project-img img { width:100%; height:100%; object-fit:cover; transition: transform .5s ease; }
+    .card:hover .project-img img { transform: scale(1.06); }
+
+    /* Buttons + Ripple */
+    .btn { position: relative; display:inline-flex; align-items:center; gap:10px; padding: 12px 18px; border-radius: 999px; border:1px solid var(--glass-border); background: linear-gradient(135deg, rgba(0,212,255,.9), rgba(42,128,238,.85)); color:#031223; font-weight:700; letter-spacing:.2px; text-decoration:none; cursor:pointer; box-shadow: 0 10px 30px rgba(0,212,255,.25); }
+    .btn.secondary { background: rgba(255,255,255,.05); color: var(--text); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(0,212,255,.35); }
+    .btn:active { transform: translateY(0); }
+
+    .ripple { position:absolute; border-radius: 50%; transform: scale(0); background: rgba(255,255,255,.85); animation: ripple .6s linear forwards; pointer-events:none; mix-blend-mode: screen; }
+    @keyframes ripple { to { transform: scale(4); opacity: 0; } }
+
+    /* Chips */
+    .chip { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius: 999px; border:1px solid var(--glass-border); background: rgba(255,255,255,.05); font-size:.9rem; }
+
+    /* Footer */
+    footer { padding: 28px 0 60px; color: var(--muted); text-align:center; }
+
+    /* Prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background blobs for depth -->
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+
+  <!-- NAV -->
+  <nav class="nav glass container" aria-label="Primary">
+    <div class="brand"><span class="dot" aria-hidden="true"></span> <a href="#home" aria-label="Home">Sayyednaa</a></div>
+    <div class="links glass glass-strong" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks"><i class="fa-solid fa-bars"></i></button>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="container hero">
+    <div>
+      <div class="chip" style="margin-bottom:12px"><i class="fa-regular fa-face-smile"></i> السلام علیکم ورحمة الله وبركاته</div>
+      <h1>I'm <span style="color:var(--accent)">Sayyed Nawab Abdul Ali</span><br/>A Farsighted Developer</h1>
+      <p class="lead">Python Programmer • Full‑Stack Web Developer • Android Developer • Defence & Political Analyst • Social Thinker</p>
+      <div class="badgebar">
+        <span class="badge">Python</span>
+        <span class="badge">Django</span>
+        <span class="badge">Java</span>
+        <span class="badge">Android</span>
+        <span class="badge">MySQL</span>
+        <span class="badge">REST APIs</span>
+      </div>
+      <div class="cta">
+        <a class="btn" href="#contact"><i class="fa-regular fa-paper-plane"></i> Contact Me</a>
+        <a class="btn secondary" href="#projects"><i class="fa-solid fa-diagram-project"></i> View Projects</a>
+      </div>
+    </div>
+
+    <aside class="hero-card glass">
+      <div class="avatar">
+        <img src="https://raw.githubusercontent.com/Sayyednaa/sayyednaa.github.io/refs/heads/main/img/logo.png" alt="Logo / Portrait" />
+      </div>
+      <div class="grid" style="gap:12px">
+        <div class="col-6 col-sm-12 card glass">
+          <div class="ic"><i class="fa-brands fa-python"></i></div>
+          <div class="title">Python</div>
+          <p>Automation, data tooling, and backend services.</p>
+        </div>
+        <div class="col-6 col-sm-12 card glass">
+          <div class="ic"><i class="fa-brands fa-java"></i></div>
+          <div class="title">Java</div>
+          <p>Robust services and Android foundations.</p>
+        </div>
+        <div class="col-12 card glass">
+          <div class="ic"><i class="fa-solid fa-code"></i></div>
+          <div class="title">Full‑Stack</div>
+          <p>Responsive, accessible, and performant web apps.</p>
+        </div>
+      </div>
+    </aside>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="container">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-sub">“Efforts never waste.” My work is driven by curiosity, clarity, and care for details.
+      I craft practical systems, not just demos — from thoughtful UX to resilient backends.</p>
+
+    <div class="grid" style="margin-top:18px">
+      <div class="col-6 col-md-6 col-sm-12 card glass">
+        <div class="title">What I value</div>
+        <p>Clean architecture, measurable performance, readable code, and steady iteration. I aim for solutions that are
+          simple to operate and joyful to use.</p>
+      </div>
+      <div class="col-6 col-md-6 col-sm-12 card glass">
+        <div class="title">I can help with</div>
+        <p>APIs & integrations, dashboards, admin tools, Android utilities, and technical analysis. Available for
+          collaboration and freelance engagements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container">
+    <h2 class="section-title">Skills</h2>
+    <div class="grid">
+      <div class="col-4 col-md-6 col-sm-12 card glass">
+        <div class="ic"><i class="fa-brands fa-python"></i></div>
+        <div class="title">Python Development</div>
+        <p>Django • FastAPI • Scripting • CLI • Automation</p>
+      </div>
+      <div class="col-4 col-md-6 col-sm-12 card glass">
+        <div class="ic"><i class="fa-brands fa-java"></i></div>
+        <div class="title">Java & Android</div>
+        <p>Android apps • Gradle • Retrofit • Material patterns</p>
+      </div>
+      <div class="col-4 col-md-6 col-sm-12 card glass">
+        <div class="ic"><i class="fa-solid fa-globe"></i></div>
+        <div class="title">Web Platform</div>
+        <p>HTML • CSS • JS • REST • Auth • Responsive UI</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="container">
+    <h2 class="section-title">Projects</h2>
+    <div class="grid">
+      <article class="col-6 col-md-6 col-sm-12 card glass">
+        <div class="project-img"><img src="https://raw.githubusercontent.com/Sayyednaa/image_storage/refs/heads/main/dashboard.png" alt="Study Management Dashboard" /></div>
+        <div class="title" style="margin-top:10px">Study Management Website</div>
+        <p>Your all‑in‑one student companion: progress tracking, tasks, and analytics.</p>
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap">
+          <span class="chip"><i class="fa-solid fa-hashtag"></i> Django</span>
+          <span class="chip"><i class="fa-solid fa-database"></i> SQLite</span>
+          <a class="btn secondary" href="#" aria-label="Open project">Preview</a>
+        </div>
+      </article>
+
+      <article class="col-6 col-md-6 col-sm-12 card glass">
+        <div class="project-img"><img src="https://raw.githubusercontent.com/Sayyednaa/Toss/main/1024.png" alt="Cricket Toss App" /></div>
+        <div class="title" style="margin-top:10px">Cricket Toss App</div>
+        <p>Playful Android app for match tosses with clean UI and snappy interactions.</p>
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap">
+          <span class="chip"><i class="fa-brands fa-android"></i> Android</span>
+          <a class="btn secondary" href="https://drive.google.com/file/d/1iuGwEtrlqkBMRnCDjLCibdnU1jqB1PlH/view?usp=share_link" target="_blank" rel="noopener">Download</a>
+        </div>
+      </article>
+
+      <article class="col-6 col-md-6 col-sm-12 card glass">
+        <div class="project-img"><img src="https://github.com/Sayyednaa/GUI-Profit-Loss-Finder/raw/main/src/image.JPG?raw=true" alt="Profit & Loss Finder" /></div>
+        <div class="title" style="margin-top:10px">Profit & Loss Finder</div>
+        <p>Lightweight desktop utility written in Python for quick P/L calculations.</p>
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap">
+          <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
+          <a class="btn secondary" href="https://github.com/Sayyednaa/GUI-Profit-Loss-Finder" target="_blank" rel="noopener">Repository</a>
+        </div>
+      </article>
+
+      <article class="col-6 col-md-6 col-sm-12 card glass">
+        <div class="project-img"><img src="https://github.com/Sayyednaa/GUI-Hcf-Finder/raw/main/images/image.JPG?raw=true" alt="HCF/GCD Finder" /></div>
+        <div class="title" style="margin-top:10px">HCF/GCD Finder</div>
+        <p>Simple visual tool to compute HCF / GCD — precise and easily shareable.</p>
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap">
+          <span class="chip"><i class="fa-solid fa-square-root-variable"></i> Math</span>
+          <a class="btn secondary" href="https://github.com/Sayyednaa/GUI-Hcf-Finder" target="_blank" rel="noopener">Repository</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="grid">
+      <div class="col-6 col-sm-12 card glass">
+        <div class="title">Say hello</div>
+        <p>Ready to collaborate or need a hand with a build? I’d love to hear from you.</p>
+        <div class="badgebar">
+          <a class="btn" href="mailto:snawabaa@gmail.com"><i class="fa-regular fa-envelope"></i> Email Me</a>
+          <a class="btn secondary" href="https://github.com/Sayyednaa" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a class="btn secondary" href="https://in.linkedin.com/in/sayyednaa" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+
+      <form class="col-6 col-sm-12 card glass" aria-label="Quick contact form" onsubmit="event.preventDefault(); alert('Thanks! I\'ll get back to you.'); this.reset();">
+        <div class="title">Quick message</div>
+        <div class="grid" style="gap:12px; margin-top:6px">
+          <div class="col-6 col-sm-12"><input class="glass" required name="name" placeholder="Your name" style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--glass-border); color:var(--text);"/></div>
+          <div class="col-6 col-sm-12"><input class="glass" required type="email" name="email" placeholder="Email" style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--glass-border); color:var(--text);"/></div>
+          <div class="col-12"><textarea class="glass" required name="message" placeholder="Message" rows="4" style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--glass-border); color:var(--text);"></textarea></div>
+          <div class="col-12"><button class="btn" type="submit"><i class="fa-regular fa-paper-plane"></i> Send</button></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="container">
+    <div class="glass" style="border-radius: var(--radius-xl); padding: 14px 16px;">
+      <small>© <span id="y"></span> Made with <span aria-hidden="true">💖</span> by Sayyednaa — Liquid Glass Edition</small>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(open));
+      });
+    }
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        navLinks.classList.remove('open');
+        navToggle?.setAttribute('aria-expanded','false');
+      });
+    });
+
+    // Ripple effect (buttons & links with .btn)
+    const addRipple = (el) => {
+      el.addEventListener('click', (e) => {
+        const rect = el.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+        ripple.style.top  = (e.clientY - rect.top  - size/2) + 'px';
+        el.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    };
+    document.querySelectorAll('.btn').forEach(addRipple);
+
+    // Optional: add ripple to glass cards on tap/click (mobile friendly)
+    document.querySelectorAll('.card.glass, .hero-card.glass').forEach((card) => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', (e) => {
+        const rect = card.getBoundingClientRect();
+        const r = document.createElement('span');
+        r.className = 'ripple';
+        const size = Math.max(rect.width, rect.height) * 0.5;
+        r.style.width = r.style.height = size + 'px';
+        r.style.left = (e.clientX - rect.left - size/2) + 'px';
+        r.style.top  = (e.clientY - rect.top  - size/2) + 'px';
+        r.style.background = 'rgba(0,212,255,.35)';
+        card.appendChild(r);
+        setTimeout(() => r.remove(), 650);
+      });
+    });
+  </script>
+</body>
+</html>
