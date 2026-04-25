@@ -327,6 +327,51 @@ section {
     font-size: 0.9rem;
 }
 
+/* --- Tech Stack --- */
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 1000px;
+}
+
+.tech-item {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    padding: 12px 24px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.tech-item i {
+    font-size: 1.2rem;
+    color: var(--accent-primary);
+    transition: var(--transition-smooth);
+}
+
+.tech-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.tech-item:hover {
+    background: rgba(0, 242, 255, 0.1);
+    border-color: var(--accent-primary);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 242, 255, 0.1);
+}
+
+.tech-item:hover i {
+    transform: rotate(15deg);
+}
+
 /* --- Projects --- */
 .project-card {
     padding: 0;
