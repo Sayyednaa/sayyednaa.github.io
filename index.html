@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sayyed Nawab Abdul Ali | Farsighted Developer</title>
+    <title>Sayyed Abdul Ali | Farsighted Developer</title>
     <meta name="description" content="Python Programmer, Full-Stack Developer, and Analytical Thinker.">
     <link rel="shortcut icon" href="img/logo.png">
 
@@ -43,15 +43,43 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="btn btn-primary" style="padding: 10px 20px;">Hire Me</a>
+        <a href="#contact" class="btn btn-primary nav-hire-btn">Hire Me</a>
+        <button class="theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </button>
+        <button class="hamburger" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu">
+        <a href="#home" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#skills" class="mobile-link">Arsenal</a>
+        <a href="#tech-stack" class="mobile-link">Tech Stack</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+        <div class="mobile-menu-social">
+            <a href="mailto:snawabaa@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Sayyednaa" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://in.linkedin.com/in/sayyednaa" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-bg-image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('img/hero_bg.png') center/cover no-repeat; opacity: 0.15; z-index: -1;"></div>
+        <!-- Hero Developer Logo -->
+        <div class="hero-logo-container animate-up">
+            <img src="img/logo.png" alt="Sayyed Abdul Ali" class="hero-logo">
+        </div>
         <span class="hero-tag animate-up">Available for projects</span>
         <h1 class="animate-up">Crafting Digital <br><span class="accent">Experiences.</span></h1>
-        <p class="animate-up">I am Sayyed Nawab Abdul Ali, a dedicated Python programmer and full-stack developer building robust, scalable solutions.</p>
+        <p class="animate-up">I am Sayyed Abdul Ali, a dedicated Python programmer and full-stack developer building robust, scalable solutions.</p>
         <div class="hero-btns animate-up">
             <a href="#projects" class="btn btn-primary">View My Work</a>
             <a href="#about" class="btn btn-secondary">Learn More</a>
@@ -90,11 +118,6 @@
                 <i class="fab fa-android skill-icon"></i>
                 <h3>Android Apps</h3>
                 <p>Building native mobile applications focused on performance and intuitive design.</p>
-            </div>
-            <div class="glass-card skill-card animate-up">
-                <i class="fab fa-java skill-icon"></i>
-                <h3>Java Systems</h3>
-                <p>Architecting enterprise-grade applications with a focus on structure and scalability.</p>
             </div>
             <div class="glass-card skill-card animate-up">
                 <i class="fab fa-wordpress skill-icon"></i>
@@ -172,6 +195,19 @@
     <section id="projects">
         <h2 class="section-title animate-up">Selected Works</h2>
         <div class="grid">
+            <!-- Unpredictable Logistics Solutions -->
+            <div class="glass-card project-card animate-up">
+                <img src="https://www.unpredictedcode.com/static/img/logo.png" alt="Unpredictable Logistics Solutions" class="project-img" style="object-fit: contain; padding: 30px; background: rgba(255, 255, 255, 0.02);">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">SaaS</span>
+                        <span class="tag">Logistics</span>
+                    </div>
+                    <h3>Unpredictable Logistics Solutions</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">A multi-tenant SaaS “operating system” for fleet and logistics management that centralizes operations, compliance tracking, and financial workflows across multiple companies and contracts.</p>
+                    <a href="https://unpredictedcode.com" target="_blank" class="btn btn-secondary" style="padding: 10px 20px;">Explore</a>
+                </div>
+            </div>
             <!-- ShelfRx -->
             <div class="glass-card project-card animate-up">
                 <img src="https://res.cloudinary.com/dcn1sjknl/image/upload/v1769781481/logo_nzlxu5.png" alt="ShelfRx" class="project-img">
@@ -237,6 +273,50 @@
 
     <!-- Scripts -->
     <script>
+        // --- Mobile Menu Toggle ---
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        // --- Theme Toggle ---
+        const themeToggleBtn = document.querySelector('.theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+
+        if (currentTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            let theme = 'dark';
+            if (document.documentElement.getAttribute('data-theme') !== 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                theme = 'light';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            localStorage.setItem('theme', theme);
+        });
+
+        function toggleMenu() {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            if (mobileMenu.classList.contains('open')) {
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
         // --- Custom Cursor ---
         const cursor = document.querySelector('.custom-cursor');
         const outline = document.querySelector('.custom-cursor-outline');
@@ -245,75 +325,83 @@
         let mouseX = 0, mouseY = 0;
         let outlineX = 0, outlineY = 0;
         let isMagnetic = false;
+        let isTouchDevice = false;
 
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            gsap.to(cursor, { x: mouseX - 10, y: mouseY - 10, duration: 0 });
-            
-            if (!isMagnetic) {
-                gsap.to(outline, { x: mouseX - 20, y: mouseY - 20, duration: 0.15 });
-            }
+        // Detect touch device
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            isTouchDevice = true;
+        }
 
-            trails.forEach((trail, index) => {
-                gsap.to(trail, {
-                    x: mouseX - 2,
-                    y: mouseY - 2,
-                    duration: 0.2 + (index * 0.1),
-                    ease: "power2.out"
-                });
-            });
-        });
-
-        document.querySelectorAll('a, button, .glass-card, .social-btn, .tech-item').forEach(el => {
-            el.addEventListener('mouseenter', (e) => {
-                isMagnetic = true;
-                const rect = el.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-
-                gsap.to(outline, {
-                    x: rect.left - 5,
-                    y: rect.top - 5,
-                    width: rect.width + 10,
-                    height: rect.height + 10,
-                    borderRadius: window.getComputedStyle(el).borderRadius,
-                    borderColor: '#ff2d55',
-                    backgroundColor: 'rgba(255, 45, 85, 0.05)',
-                    duration: 0.3,
-                    ease: "power2.out"
-                });
+        if (!isTouchDevice) {
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
                 
-                gsap.to(cursor, { scale: 1.5, color: '#ff2d55' });
-            });
+                gsap.to(cursor, { x: mouseX - 10, y: mouseY - 10, duration: 0 });
+                
+                if (!isMagnetic) {
+                    gsap.to(outline, { x: mouseX - 20, y: mouseY - 20, duration: 0.15 });
+                }
 
-            el.addEventListener('mouseleave', () => {
-                isMagnetic = false;
-                gsap.to(outline, {
-                    x: mouseX - 20,
-                    y: mouseY - 20,
-                    width: 40,
-                    height: 40,
-                    borderRadius: '50%',
-                    borderColor: '#ff2d55',
-                    backgroundColor: 'transparent',
-                    duration: 0.3,
-                    ease: "power2.out"
+                trails.forEach((trail, index) => {
+                    gsap.to(trail, {
+                        x: mouseX - 2,
+                        y: mouseY - 2,
+                        duration: 0.2 + (index * 0.1),
+                        ease: "power2.out"
+                    });
                 });
-                gsap.to(cursor, { scale: 1, color: '#ff2d55' });
             });
-        });
 
-        window.addEventListener('mousedown', () => {
-            gsap.to(cursor, { scale: 0.5, duration: 0.1 });
-            gsap.to(outline, { scale: 0.8, duration: 0.1 });
-        });
+            document.querySelectorAll('a, button, .glass-card, .social-btn, .tech-item').forEach(el => {
+                el.addEventListener('mouseenter', (e) => {
+                    isMagnetic = true;
+                    const rect = el.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
 
-        window.addEventListener('mouseup', () => {
-            gsap.to(cursor, { scale: 1, duration: 0.1 });
-            gsap.to(outline, { scale: 1, duration: 0.1 });
-        });
+                    gsap.to(outline, {
+                        x: rect.left - 5,
+                        y: rect.top - 5,
+                        width: rect.width + 10,
+                        height: rect.height + 10,
+                        borderRadius: window.getComputedStyle(el).borderRadius,
+                        borderColor: '#ff2d55',
+                        backgroundColor: 'rgba(255, 45, 85, 0.05)',
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(cursor, { scale: 1.5, color: '#ff2d55' });
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    isMagnetic = false;
+                    gsap.to(outline, {
+                        x: mouseX - 20,
+                        y: mouseY - 20,
+                        width: 40,
+                        height: 40,
+                        borderRadius: '50%',
+                        borderColor: '#ff2d55',
+                        backgroundColor: 'transparent',
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                    gsap.to(cursor, { scale: 1, color: '#ff2d55' });
+                });
+            });
+
+            window.addEventListener('mousedown', () => {
+                gsap.to(cursor, { scale: 0.5, duration: 0.1 });
+                gsap.to(outline, { scale: 0.8, duration: 0.1 });
+            });
+
+            window.addEventListener('mouseup', () => {
+                gsap.to(cursor, { scale: 1, duration: 0.1 });
+                gsap.to(outline, { scale: 1, duration: 0.1 });
+            });
+        }
 
         // --- Three.js Background (Stars/Particles) ---
         const scene = new THREE.Scene();
