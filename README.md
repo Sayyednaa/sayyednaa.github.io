@@ -2,7 +2,7 @@
 # 👋 I'm Sayyed Abdul Ali
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Sayyednaa/sayyednaa.github.io/refs/heads/main/img/logo.png" alt="Sayyed Abdul Ali Logo" width="160px" style="border-radius: 50%; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);" />
+  <img src="[https://raw.githubusercontent.com/Sayyednaa/sayyednaa.github.io/refs/heads/main/img/logo.png](https://raw.githubusercontent.com/Sayyednaa/sayyednaa.github.io/refs/heads/main/logo.png)" alt="Sayyed Abdul Ali Logo" width="160px" style="border-radius: 50%; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);" />
 </p>
 
 <h3 align="center">🚀 Farsighted Developer & Analytical Thinker</h3>
