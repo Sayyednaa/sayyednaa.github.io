@@ -1,0 +1,36 @@
+---
+import { Reveal } from '../motion/Reveal';
+import { SKILLS } from '../../lib/constants';
+---
+
+<section id="skills" class="py-24 px-6 relative">
+  <div class="max-w-6xl mx-auto">
+    <Reveal client:visible>
+      <div class="text-center mb-16">
+        <span class="text-xs font-mono uppercase tracking-widest text-accent-primary">Capabilities</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-2">Technical Arsenal</h2>
+        <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto mt-3">
+          Specialized expertise across programming languages, system engineering, and analytical frameworks.
+        </p>
+      </div>
+    </Reveal>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {SKILLS.map((skill, index) => (
+        <Reveal client:visible delay={0.1 * index}>
+          <div class="glass-card h-full rounded-2xl backdrop-blur-glass bg-surface-dark border border-glass-border-dark p-8 hover:border-accent-primary/50 transition-all duration-300 group hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-xl bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center text-accent-primary mb-6 group-hover:scale-110 group-hover:bg-accent-primary group-hover:text-white transition-all duration-300">
+              <span class="font-mono text-lg font-bold">0{index + 1}</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-accent-primary transition-colors">
+              {skill.title}
+            </h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              {skill.description}
+            </p>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>

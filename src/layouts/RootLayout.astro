@@ -1,0 +1,141 @@
+---
+import '../styles/global.css';
+import { SITE_METADATA } from '../lib/constants';
+import { StarfieldCanvas } from '../components/three/StarfieldCanvas';
+import { MagneticCursor } from '../components/motion/MagneticCursor';
+import { CommandPalette } from '../components/command/CommandPalette';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = SITE_METADATA.title,
+  description = SITE_METADATA.description,
+  ogImage = SITE_METADATA.ogImage,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE_METADATA.url);
+
+const jsonLdGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE_METADATA.url}/#person`,
+      "name": SITE_METADATA.name,
+      "alternateName": SITE_METADATA.alternateNames,
+      "givenName": "Abdul Ali",
+      "familyName": "Sayyed",
+      "additionalName": "Nawab",
+      "url": SITE_METADATA.url,
+      "image": `${SITE_METADATA.url}/img/hero.png`,
+      "jobTitle": "Full-Stack Developer & Python Engineer",
+      "description": SITE_METADATA.description,
+      "sameAs": [
+        SITE_METADATA.github,
+        SITE_METADATA.linkedin,
+        SITE_METADATA.x,
+        SITE_METADATA.instagram,
+        SITE_METADATA.blog
+      ],
+      "knowsAbout": [
+        "Python", "Django", "JavaScript", "TypeScript", "React", "React Native", "Android Development", "PostgreSQL", "REST APIs", "Full Stack Web Development", "Cloud Architecture"
+      ],
+      "mainEntityOfPage": SITE_METADATA.url
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_METADATA.url}/#website`,
+      "url": SITE_METADATA.url,
+      "name": "Sayyed Abdul Ali Portfolio",
+      "description": SITE_METADATA.description,
+      "publisher": {
+        "@id": `${SITE_METADATA.url}/#person`
+      }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE_METADATA.url}/#webpage`,
+      "url": SITE_METADATA.url,
+      "name": title,
+      "isPartOf": {
+        "@id": `${SITE_METADATA.url}/#website`
+      },
+      "about": {
+        "@id": `${SITE_METADATA.url}/#person`
+      },
+      "description": description
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/logo.png" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Search Engine Optimization Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={SITE_METADATA.keywords} />
+    <meta name="author" content="Sayyed Abdul Ali" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, canonicalURL)} />
+    <meta property="profile:first_name" content="Abdul Ali" />
+    <meta property="profile:last_name" content="Sayyed" />
+    <meta property="profile:username" content="Sayyednaa" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@sayyednaa" />
+    <meta name="twitter:creator" content="@sayyednaa" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, canonicalURL)} />
+
+    <!-- Schema JSON-LD Graph -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdGraph)} />
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Inline script to prevent theme flash -->
+    <script is:inline>
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+  </head>
+  <body class="min-h-screen bg-canvas-dark text-slate-100 font-sans antialiased selection:bg-accent-primary selection:text-white relative">
+    <!-- Ambient mesh gradient -->
+    <div class="mesh-gradient"></div>
+
+    <!-- 3D Starfield Background Island (lazy loaded) -->
+    <StarfieldCanvas client:idle />
+
+    <!-- Hardware Accelerated Custom Magnetic Cursor (desktop pointer fine only) -->
+    <MagneticCursor client:media="(pointer: fine)" />
+
+    <!-- Command Palette (⌘K) -->
+    <CommandPalette client:idle />
+
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <slot />
+    </div>
+  </body>
+</html>

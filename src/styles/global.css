@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-canvas: #07090e;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --card-bg: rgba(15, 23, 42, 0.65);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --accent: #ff2d55;
+    --accent-glow: rgba(255, 45, 85, 0.25);
+  }
+
+  [data-theme="light"] {
+    --bg-canvas: #f8fafc;
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --accent: #ff2d55;
+    --accent-glow: rgba(255, 45, 85, 0.15);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  [data-theme="light"] html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    background-color: #ff2d55;
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .backdrop-glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glow-box {
+    box-shadow: 0 0 25px -5px rgba(255, 45, 85, 0.3);
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 15px rgba(255, 45, 85, 0.5);
+  }
+}
+
+/* Custom Cursor styles */
+@media (pointer: fine) and (hover: hover) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Mesh gradient ambient background */
+.mesh-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(255, 45, 85, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(0, 242, 254, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+}

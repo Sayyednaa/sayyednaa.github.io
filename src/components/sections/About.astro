@@ -1,0 +1,42 @@
+---
+import { Reveal } from '../motion/Reveal';
+import { SITE_METADATA } from '../../lib/constants';
+---
+
+<section id="about" class="py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+    <Reveal client:visible>
+      <div class="text-center mb-12">
+        <span class="text-xs font-mono uppercase tracking-widest text-accent-primary">Background</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-2">About Me</h2>
+      </div>
+    </Reveal>
+
+    <Reveal client:visible delay={0.2}>
+      <div class="relative rounded-3xl backdrop-blur-glass bg-surface-dark border border-glass-border-dark p-8 md:p-12 shadow-glass overflow-hidden group">
+        <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-accent-primary/10 rounded-full blur-3xl group-hover:bg-accent-primary/20 transition-all duration-700 pointer-events-none"></div>
+
+        <p class="text-xl md:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300 mb-6 italic">
+          "{SITE_METADATA.tagline}"
+        </p>
+
+        <div class="space-y-4 text-slate-300 text-base md:text-lg leading-relaxed">
+          <p>
+            I am <strong class="text-white font-semibold">Sayyed Abdul Ali</strong>, a dedicated Python programmer, full-stack web developer, and mobile engineer with extensive experience building scalable backends, responsive interfaces, and React Native Android applications.
+          </p>
+          <p>
+            Beyond technical execution, I am deeply engaged in political analysis and social systems thinking, bringing a multidimensional perspective to every problem I solve. My journey is fueled by a relentless curiosity to master complex architectures and deliver digital products that make an enduring impact.
+          </p>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-white/5 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Focus: High-Performance Systems & Mobile</span>
+          </div>
+          <div>Location: India • Available Globally</div>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

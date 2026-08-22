@@ -1,0 +1,59 @@
+---
+import RootLayout from '../layouts/RootLayout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Arsenal from '../components/sections/Arsenal.astro';
+import TechStack from '../components/sections/TechStack.astro';
+import { ProjectsGrid } from '../components/sections/ProjectsGrid';
+import { Contact } from '../components/sections/Contact';
+import Footer from '../components/sections/Footer.astro';
+import { Reveal } from '../components/motion/Reveal';
+import { getCollection } from 'astro:content';
+
+const rawProjects = await getCollection('projects');
+const sortedProjects = rawProjects
+  .sort((a, b) => a.data.order - b.data.order)
+  .map(p => ({
+    slug: p.slug,
+    title: p.data.title,
+    description: p.data.description,
+    tags: p.data.tags,
+    category: p.data.category,
+    image: p.data.image,
+    liveUrl: p.data.liveUrl,
+    downloadUrl: p.data.downloadUrl,
+  }));
+---
+
+<RootLayout>
+  <Navbar />
+
+  <main>
+    <Hero />
+    <About />
+    <Arsenal />
+    <TechStack />
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        <Reveal client:visible>
+          <div class="text-center mb-16">
+            <span class="text-xs font-mono uppercase tracking-widest text-accent-primary">Portfolio</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-2">Selected Works</h2>
+            <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto mt-3">
+              Production web applications, cross-platform mobile apps, and scalable digital solutions.
+            </p>
+          </div>
+        </Reveal>
+
+        <ProjectsGrid client:visible projects={sortedProjects} />
+      </div>
+    </section>
+
+    <Contact client:visible />
+  </main>
+
+  <Footer />
+</RootLayout>

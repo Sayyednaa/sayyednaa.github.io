@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="https://sayyednaa.github.io/"><img src="https://img.shields.io/badge/Live_Portfolio-Visit_Site-00d4ff?style=for-the-badge&logo=google-chrome&logoColor=white" /></a>
-  <a href="mailto:snawabaa@gmail.com"><img src="https://img.shields.io/badge/Email_Me-Get_in_Touch-ff2d55?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+  <a href="mailto:sayyednawababdulali@gmail.com"><img src="https://img.shields.io/badge/Email_Me-Get_in_Touch-ff2d55?style=for-the-badge&logo=gmail&logoColor=white" /></a>
   <a href="https://in.linkedin.com/in/sayyednaa"><img src="https://img.shields.io/badge/LinkedIn-Connect-2a80ee?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
 </p>
 
@@ -114,7 +114,7 @@ Here are some of the key projects I have built, ranging from multi-tenant SaaS p
 
 I am always open to discussing new software ideas, technical backends, or exchanging thoughts on global affairs, political systems, and defence! 
 
-*   📧 **Professional Inquiries:** [snawabaa@gmail.com](mailto:snawabaa@gmail.com)
+*   📧 **Professional Inquiries:** [sayyednawababdulali@gmail.com](mailto:sayyednawababdulali@gmail.com)
 *   📧 **App Support:** [help.sayyednaa@gmail.com](mailto:help.sayyednaa@gmail.com)
 *   💼 **LinkedIn:** [linkedin.com/in/sayyednaa](https://in.linkedin.com/in/sayyednaa)
 *   ✍️ **My Blog:** [nawababdulali.blogspot.com](https://nawababdulali.blogspot.com/)

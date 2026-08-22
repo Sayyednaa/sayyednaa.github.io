@@ -183,10 +183,14 @@ h1, h2, h3, h4, .outfit {
 }
 
 .logo img {
-    height: 38px;
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.1);
     border-radius: 50%;
     border: 2px solid var(--accent-primary);
-    box-shadow: 0 0 12px rgba(0, 242, 255, 0.3);
+    box-shadow: 0 0 16px rgba(255, 45, 85, 0.4);
     transition: var(--transition-smooth);
 }
 
