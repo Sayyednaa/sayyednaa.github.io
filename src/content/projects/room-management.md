@@ -4,7 +4,6 @@ description: "An intuitive React Native Android application for managing rooms, 
 tags: ["React Native", "Android", "Mobile"]
 category: "mobile"
 image: "/img/room-management-app-icon.png"
-downloadUrl: "/downloads/Alistud.apk"
 featured: true
 order: 4
 ---

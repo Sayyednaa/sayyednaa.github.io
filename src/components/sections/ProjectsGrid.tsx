@@ -89,7 +89,7 @@ export const ProjectsGrid: React.FC<{ projects: ProjectItem[] }> = ({ projects }
                   {project.description}
                 </p>
 
-                {/* Card Action Buttons */}
+                {/* Card Action Buttons / Status */}
                 <div className="pt-4 border-t border-white/5 flex items-center gap-3">
                   {project.liveUrl && (
                     <a
@@ -111,6 +111,11 @@ export const ProjectsGrid: React.FC<{ projects: ProjectItem[] }> = ({ projects }
                       <span>Download</span>
                       <Download className="w-3.5 h-3.5" />
                     </a>
+                  )}
+                  {!project.liveUrl && !project.downloadUrl && (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-medium text-slate-400 bg-white/5 border border-white/5">
+                      Android Native App
+                    </span>
                   )}
                 </div>
               </div>

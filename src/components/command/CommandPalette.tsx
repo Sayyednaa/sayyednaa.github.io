@@ -127,14 +127,14 @@ export const CommandPalette: React.FC = () => {
                 <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
               </Command.Item>
               <Command.Item
-                onSelect={() => navigateTo('/downloads/Alistud.apk')}
+                onSelect={() => navigateTo('#projects')}
                 className="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 cursor-pointer transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <Download className="w-4 h-4 text-accent-primary" />
-                  <span>Download Room Management APK</span>
+                  <FolderGit2 className="w-4 h-4 text-purple-400" />
+                  <span>Room Management App</span>
                 </div>
-                <span className="text-[10px] font-mono bg-white/5 px-2 py-0.5 rounded text-slate-400">.apk</span>
+                <span className="text-[10px] font-mono bg-white/5 px-2 py-0.5 rounded text-slate-400">Mobile</span>
               </Command.Item>
             </Command.Group>
 
