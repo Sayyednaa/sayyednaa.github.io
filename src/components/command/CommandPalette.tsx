@@ -41,6 +41,7 @@ export const CommandPalette: React.FC = () => {
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
+    window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme: next } }));
   };
 
   if (!open) return null;

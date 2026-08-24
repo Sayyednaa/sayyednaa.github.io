@@ -7,9 +7,13 @@
     <meta name="description" content="Official portfolio of Sayyed Nawab Abdul Ali — Python Programmer, Full-Stack Developer, and React Native Mobile Engineer.">
     <meta name="keywords" content="Sayyed Nawab Abdul Ali, Sayyed Abdul Ali, Abdul Ali, Sayyednaa, Python Developer, Full Stack Developer, React Native Developer, Software Engineer India">
     <meta name="author" content="Sayyed Nawab Abdul Ali">
-    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://sayyednaa.github.io">
     <link rel="shortcut icon" href="img/logo.png">
+
+    <script>
+        const initialTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', initialTheme);
+    </script>
 
     <!-- Schema JSON-LD Graph for Google Knowledge Graph -->
     <script type="application/ld+json">
@@ -337,20 +341,16 @@
         const themeToggleBtn = document.querySelector('.theme-toggle');
         const currentTheme = localStorage.getItem('theme') || 'dark';
 
-        if (currentTheme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
+        document.documentElement.setAttribute('data-theme', currentTheme);
 
-        themeToggleBtn.addEventListener('click', () => {
-            let theme = 'dark';
-            if (document.documentElement.getAttribute('data-theme') !== 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                theme = 'light';
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-            }
-            localStorage.setItem('theme', theme);
-        });
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme') || 'dark';
+                const nextTheme = current === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', nextTheme);
+                localStorage.setItem('theme', nextTheme);
+            });
+        }
 
         function toggleMenu() {
             hamburger.classList.toggle('open');

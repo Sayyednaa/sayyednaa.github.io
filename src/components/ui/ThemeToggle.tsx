@@ -7,9 +7,24 @@ export const ThemeToggle: React.FC = () => {
 
   useEffect(() => {
     setMounted(true);
-    const storedTheme = (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
-    setTheme(storedTheme);
-    document.documentElement.setAttribute('data-theme', storedTheme);
+    const initialTheme = (document.documentElement.getAttribute('data-theme') as 'dark' | 'light') ||
+      (localStorage.getItem('theme') as 'dark' | 'light') ||
+      'dark';
+    setTheme(initialTheme);
+    document.documentElement.setAttribute('data-theme', initialTheme);
+
+    const onThemeChanged = (e: Event) => {
+      const customEvent = e as CustomEvent<{ theme: 'dark' | 'light' }>;
+      if (customEvent.detail?.theme) {
+        setTheme(customEvent.detail.theme);
+      } else {
+        const current = (document.documentElement.getAttribute('data-theme') as 'dark' | 'light') || 'dark';
+        setTheme(current);
+      }
+    };
+
+    window.addEventListener('theme-change', onThemeChanged);
+    return () => window.removeEventListener('theme-change', onThemeChanged);
   }, []);
 
   const toggleTheme = () => {
@@ -17,6 +32,7 @@ export const ThemeToggle: React.FC = () => {
     setTheme(nextTheme);
     localStorage.setItem('theme', nextTheme);
     document.documentElement.setAttribute('data-theme', nextTheme);
+    window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme: nextTheme } }));
   };
 
   if (!mounted) {
