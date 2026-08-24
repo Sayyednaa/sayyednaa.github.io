@@ -102,7 +102,6 @@ Here are some of the key projects I have built, ranging from multi-tenant SaaS p
 *   **Azkar App**
     *   *Description:* A simple, offline, distraction-free Dua and Adhkar application created for users of all age groups to recite adhkar in a peaceful digital interface.
     *   *Tags:* `Android` `Offline first` `Children friendly`
-    *   *Link:* [Read Privacy Policy 📝](https://sayyednaa.github.io/pages/Zikr-pp.html)
 
 ---
 
