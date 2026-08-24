@@ -183,7 +183,7 @@ export const CommandPalette: React.FC = () => {
               <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px]">↓</kbd>
               <kbd className="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px]">↵</kbd>
             </span>
-            <span>Sayyed Abdul Ali Portfolio</span>
+            <span>Sayyed Nawab Abdul Ali Portfolio</span>
           </div>
         </Command>
       </div>

@@ -1,8 +1,9 @@
-
-# 👋 I'm Sayyed Abdul Ali
+# 👋 I'm Sayyed Nawab Abdul Ali
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Sayyednaa/sayyednaa.github.io/refs/heads/main/logo.png" alt="Sayyed Abdul Ali Logo" width="160px" style="border-radius: 50%; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);" />
+  <a href="https://sayyednaa.github.io">
+    <img src="https://raw.githubusercontent.com/Sayyednaa/sayyednaa.github.io/refs/heads/main/logo.png" alt="Sayyed Nawab Abdul Ali Logo" width="160px" style="border-radius: 50%; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);" />
+  </a>
 </p>
 
 <h3 align="center">🚀 Farsighted Developer & Analytical Thinker</h3>
@@ -122,5 +123,5 @@ I am always open to discussing new software ideas, technical backends, or exchan
 
 ---
 <p align="center">
-  <sub>Crafted with ❤️ by Sayyed Abdul Ali. Feel free to explore my repositories or drop me a line!</sub>
+  <sub>Crafted with ❤️ by Sayyed Nawab Abdul Ali. Feel free to explore my repositories or drop me a line!</sub>
 </p>

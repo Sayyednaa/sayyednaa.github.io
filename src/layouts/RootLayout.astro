@@ -50,7 +50,7 @@ const jsonLdGraph = {
       "@type": "WebSite",
       "@id": `${SITE_METADATA.url}/#website`,
       "url": SITE_METADATA.url,
-      "name": "Sayyed Abdul Ali Portfolio",
+      "name": "Sayyed Nawab Abdul Ali Portfolio",
       "description": SITE_METADATA.description,
       "publisher": {
         "@id": `${SITE_METADATA.url}/#person`
@@ -85,7 +85,7 @@ const jsonLdGraph = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={SITE_METADATA.keywords} />
-    <meta name="author" content="Sayyed Abdul Ali" />
+    <meta name="author" content={SITE_METADATA.name} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
