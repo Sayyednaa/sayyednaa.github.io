@@ -84,6 +84,10 @@ Here are some of the key projects I have built, ranging from multi-tenant SaaS p
     *   *Description:* A smart, highly-optimized Pharmacy Management website designed for max administrative efficiency and clean inventory flows.
     *   *Tags:* `Django` `Python` `MySQL`
     *   *Link:* [Explore Live 🌐](https://shelfrx.pythonanywhere.com/)
+*   **Trakment**
+    *   *Description:* The ultimate student study tracker, syllabus manager, smart analytics, and productivity platform.
+    *   *Tags:* `Django` `Python` `SaaS` `PWA`
+    *   *Link:* [Explore Live 🌐](https://trakment.pythonanywhere.com/)
 *   **Micro Dynamic Travels**
     *   *Description:* A comprehensive digital portal for a Travel and Manpower consultancy company, managing listings and client interactions.
     *   *Tags:* `Web` `Business Solutions` `CMS`
